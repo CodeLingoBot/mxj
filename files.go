@@ -17,7 +17,7 @@ type MapRaw struct {
 	R []byte
 }
 
-// NewMapsFromXmlFile - creates an array from a file of JSON values.
+// NewMapsFromJsonFile - creates an array from a file of JSON values.
 func NewMapsFromJsonFile(name string) (Maps, error) {
 	fi, err := os.Stat(name)
 	if err != nil {
@@ -49,7 +49,7 @@ func NewMapsFromJsonFile(name string) (Maps, error) {
 	return am, nil
 }
 
-// ReadMapsFromJsonFileRaw - creates an array of MapRaw from a file of JSON values.
+// NewMapsFromJsonFileRaw - creates an array of MapRaw from a file of JSON values.
 func NewMapsFromJsonFileRaw(name string) ([]MapRaw, error) {
 	fi, err := os.Stat(name)
 	if err != nil {

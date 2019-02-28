@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-// Return the root element of the Map. If there is not a single key in Map,
+// Root returns the root element of the Map. If there is not a single key in Map,
 // then an error is returned.
 func (mv Map) Root() (string, error) {
 	mm := map[string]interface{}(mv)

@@ -2,7 +2,7 @@ package mxj
 
 import "strings"
 
-// Removes the path.
+// Remove removes the path.
 func (mv Map) Remove(path string) error {
 	m := map[string]interface{}(mv)
 	return remove(m, path)

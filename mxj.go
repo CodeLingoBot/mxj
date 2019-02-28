@@ -28,7 +28,7 @@ func (mv Map) Old() map[string]interface{} {
 	return mv
 }
 
-// Return a copy of mv as a newly allocated Map.  If the Map only contains string,
+// Copy returns a copy of mv as a newly allocated Map.  If the Map only contains string,
 // numeric, map[string]interface{}, and []interface{} values, then it can be thought
 // of as a "deep copy."  Copying a structure (or structure reference) value is subject
 // to the noted restrictions.

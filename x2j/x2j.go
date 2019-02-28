@@ -11,7 +11,7 @@ import (
 	"io"
 )
 
-// FromXml() --> map[string]interface{}
+// XmlToMap --> map[string]interface{}
 func XmlToMap(xmlVal []byte) (map[string]interface{}, error) {
 	m, err := NewMapXml(xmlVal)
 	if err != nil {
@@ -25,7 +25,7 @@ func MapToXml(m map[string]interface{}) ([]byte, error) {
 	return Map(m).Xml()
 }
 
-// FromXml() --> ToJson().
+// XmlToJson --> ToJson().
 func XmlToJson(xmlVal []byte, safeEncoding ...bool) ([]byte, error) {
 	m, err := NewMapXml(xmlVal)
 	if err != nil {
@@ -34,7 +34,7 @@ func XmlToJson(xmlVal []byte, safeEncoding ...bool) ([]byte, error) {
 	return m.Json(safeEncoding...)
 }
 
-// FromXml() --> ToJsonWriterRaw().
+// XmlToJsonWriter --> ToJsonWriterRaw().
 func XmlToJsonWriter(xmlVal []byte, jsonWriter io.Writer, safeEncoding ...bool) ([]byte, error) {
 	m, err := NewMapXml(xmlVal)
 	if err != nil {
@@ -43,7 +43,7 @@ func XmlToJsonWriter(xmlVal []byte, jsonWriter io.Writer, safeEncoding ...bool) 
 	return m.JsonWriterRaw(jsonWriter, safeEncoding...)
 }
 
-// FromXmlReaderRaw() --> ToJson().
+// XmlReaderToJson --> ToJson().
 func XmlReaderToJson(xmlReader io.Reader, safeEncoding ...bool) ([]byte, []byte, error) {
 	m, xraw, err := NewMapXmlReaderRaw(xmlReader)
 	if err != nil {
@@ -53,7 +53,7 @@ func XmlReaderToJson(xmlReader io.Reader, safeEncoding ...bool) ([]byte, []byte,
 	return xraw, j, jerr
 }
 
-// FromXmlReader() --> ToJsonWriter().  Handy for bulk transformation of documents.
+// XmlReaderToJsonWriter --> ToJsonWriter().  Handy for bulk transformation of documents.
 func XmlReaderToJsonWriter(xmlReader io.Reader, jsonWriter io.Writer, safeEncoding ...bool) ([]byte, []byte, error) {
 	m, xraw, err := NewMapXmlReaderRaw(xmlReader)
 	if err != nil {

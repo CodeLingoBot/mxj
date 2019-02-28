@@ -54,7 +54,7 @@ func (mv Map) JsonIndent(prefix, indent string, safeEncoding ...bool) ([]byte, e
 // The following implementation is provided for symmetry with NewMapJsonReader[Raw]
 // The names will also provide a key for the number of return arguments.
 
-// Writes the Map as JSON on the Writer.
+// JsonWriter writes the Map as JSON on the Writer.
 // If 'safeEncoding' is 'true', then "safe" encoding of '<', '>' and '&' is preserved.
 func (mv Map) JsonWriter(jsonWriter io.Writer, safeEncoding ...bool) error {
 	b, err := mv.Json(safeEncoding...)
@@ -66,7 +66,7 @@ func (mv Map) JsonWriter(jsonWriter io.Writer, safeEncoding ...bool) error {
 	return err
 }
 
-// Writes the Map as JSON on the Writer. []byte is the raw JSON that was written.
+// JsonWriterRaw writes the Map as JSON on the Writer. []byte is the raw JSON that was written.
 // If 'safeEncoding' is 'true', then "safe" encoding of '<', '>' and '&' is preserved.
 func (mv Map) JsonWriterRaw(jsonWriter io.Writer, safeEncoding ...bool) ([]byte, error) {
 	b, err := mv.Json(safeEncoding...)
@@ -78,7 +78,7 @@ func (mv Map) JsonWriterRaw(jsonWriter io.Writer, safeEncoding ...bool) ([]byte,
 	return b, err
 }
 
-// Writes the Map as pretty JSON on the Writer.
+// JsonIndentWriter writes the Map as pretty JSON on the Writer.
 // If 'safeEncoding' is 'true', then "safe" encoding of '<', '>' and '&' is preserved.
 func (mv Map) JsonIndentWriter(jsonWriter io.Writer, prefix, indent string, safeEncoding ...bool) error {
 	b, err := mv.JsonIndent(prefix, indent, safeEncoding...)
@@ -90,7 +90,7 @@ func (mv Map) JsonIndentWriter(jsonWriter io.Writer, prefix, indent string, safe
 	return err
 }
 
-// Writes the Map as pretty JSON on the Writer. []byte is the raw JSON that was written.
+// JsonIndentWriterRaw writes the Map as pretty JSON on the Writer. []byte is the raw JSON that was written.
 // If 'safeEncoding' is 'true', then "safe" encoding of '<', '>' and '&' is preserved.
 func (mv Map) JsonIndentWriterRaw(jsonWriter io.Writer, prefix, indent string, safeEncoding ...bool) ([]byte, error) {
 	b, err := mv.JsonIndent(prefix, indent, safeEncoding...)
@@ -146,7 +146,7 @@ func NewMapJson(jsonVal []byte) (Map, error) {
 	return m, err
 }
 
-// Retrieve a Map value from an io.Reader.
+// NewMapJsonReader retrieves a Map value from an io.Reader.
 //  NOTE: The raw JSON off the reader is buffered to []byte using a ByteReader. If the io.Reader is an
 //        os.File, there may be significant performance impact. If the io.Reader is wrapping a []byte
 //        value in-memory, however, such as http.Request.Body you CAN use it to efficiently unmarshal
@@ -161,7 +161,7 @@ func NewMapJsonReader(jsonReader io.Reader) (Map, error) {
 	return NewMapJson(*jb)
 }
 
-// Retrieve a Map value and raw JSON - []byte - from an io.Reader.
+// NewMapJsonReaderRaw retrieves a Map value and raw JSON - []byte - from an io.Reader.
 //  NOTE: The raw JSON off the reader is buffered to []byte using a ByteReader. If the io.Reader is an
 //        os.File, there may be significant performance impact. If the io.Reader is wrapping a []byte
 //        value in-memory, however, such as http.Request.Body you CAN use it to efficiently unmarshal

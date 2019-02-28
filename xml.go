@@ -64,7 +64,7 @@ func NewMapXml(xmlVal []byte, cast ...bool) (Map, error) {
 	return xmlToMap(xmlVal, r)
 }
 
-// Get next XML doc from an io.Reader as a Map value.  Returns Map value.
+// NewMapXmlReader gets next XML doc from an io.Reader as a Map value.  Returns Map value.
 //	NOTES:
 //	   1. The 'xmlReader' will be parsed looking for an xml.StartElement, so BOM and other
 //	      extraneous xml.CharData will be ignored unless io.EOF is reached first.
@@ -87,7 +87,7 @@ func NewMapXmlReader(xmlReader io.Reader, cast ...bool) (Map, error) {
 	return xmlReaderToMap(xmlReader, r)
 }
 
-// Get next XML doc from an io.Reader as a Map value.  Returns Map value and slice with the raw XML.
+// NewMapXmlReaderRaw gets next XML doc from an io.Reader as a Map value.  Returns Map value and slice with the raw XML.
 //	NOTES:
 //	   1. Due to the implementation of xml.Decoder, the raw XML off the reader is buffered to []byte
 //	      using a ByteReader. If the io.Reader is an os.File, there may be significant performance impact.
@@ -608,7 +608,7 @@ done:
 // The following implementation is provided only for symmetry with NewMapXmlReader[Raw]
 // The names will also provide a key for the number of return arguments.
 
-// Writes the Map as  XML on the Writer.
+// XmlWriter writes the Map as  XML on the Writer.
 // See Xml() for encoding rules.
 func (mv Map) XmlWriter(xmlWriter io.Writer, rootTag ...string) error {
 	x, err := mv.Xml(rootTag...)
@@ -620,7 +620,7 @@ func (mv Map) XmlWriter(xmlWriter io.Writer, rootTag ...string) error {
 	return err
 }
 
-// Writes the Map as  XML on the Writer. []byte is the raw XML that was written.
+// XmlWriterRaw writes the Map as  XML on the Writer. []byte is the raw XML that was written.
 // See Xml() for encoding rules.
 func (mv Map) XmlWriterRaw(xmlWriter io.Writer, rootTag ...string) ([]byte, error) {
 	x, err := mv.Xml(rootTag...)
@@ -632,7 +632,7 @@ func (mv Map) XmlWriterRaw(xmlWriter io.Writer, rootTag ...string) ([]byte, erro
 	return x, err
 }
 
-// Writes the Map as pretty XML on the Writer.
+// XmlIndentWriter writes the Map as pretty XML on the Writer.
 // See Xml() for encoding rules.
 func (mv Map) XmlIndentWriter(xmlWriter io.Writer, prefix, indent string, rootTag ...string) error {
 	x, err := mv.XmlIndent(prefix, indent, rootTag...)
@@ -644,7 +644,7 @@ func (mv Map) XmlIndentWriter(xmlWriter io.Writer, prefix, indent string, rootTa
 	return err
 }
 
-// Writes the Map as pretty XML on the Writer. []byte is the raw XML that was written.
+// XmlIndentWriterRaw writes the Map as pretty XML on the Writer. []byte is the raw XML that was written.
 // See Xml() for encoding rules.
 func (mv Map) XmlIndentWriterRaw(xmlWriter io.Writer, prefix, indent string, rootTag ...string) ([]byte, error) {
 	x, err := mv.XmlIndent(prefix, indent, rootTag...)

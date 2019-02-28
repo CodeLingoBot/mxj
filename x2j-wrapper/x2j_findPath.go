@@ -15,7 +15,7 @@ import (
 // Want eventually to extract shortest path and call GetValuesAtKeyPath()
 // This will get all the possible paths.  These can be scanned for len(path) and sequence.
 
-// Get all paths through the doc (in dot-notation) that terminate with the specified tag.
+// PathsForTag gets all paths through the doc (in dot-notation) that terminate with the specified tag.
 // Results can be used with ValuesAtTagPath() and ValuesFromTagPath().
 func PathsForTag(doc string, key string) ([]string, error) {
 	m, err := mxj.NewMapXml([]byte(doc))
@@ -39,7 +39,7 @@ func PathForTagShortest(doc string, key string) (string, error) {
 	return s, nil
 }
 
-// Get all paths through the doc (in dot-notation) that terminate with the specified tag.
+// BytePathsForTag gets all paths through the doc (in dot-notation) that terminate with the specified tag.
 // Results can be used with ValuesAtTagPath() and ValuesFromTagPath().
 func BytePathsForTag(doc []byte, key string) ([]string, error) {
 	m, err := mxj.NewMapXml(doc)
@@ -63,7 +63,7 @@ func BytePathForTagShortest(doc []byte, key string) (string, error) {
 	return s, nil
 }
 
-// Get all paths through the map (in dot-notation) that terminate with the specified key.
+// PathsForKey gets all paths through the map (in dot-notation) that terminate with the specified key.
 // Results can be used with ValuesAtKeyPath() and ValuesFromKeyPath().
 func PathsForKey(m map[string]interface{}, key string) []string {
 	breadbasket := make(map[string]bool,0)
